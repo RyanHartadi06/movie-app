@@ -38,7 +38,7 @@ class UserController extends Controller
 
             return ResponseFormatter::success([
                 'access_token' => $token,
-                'token_type' => 'Barier',
+                'token_type' => 'Bearer',
                 'user' => $user
             ], 'Authenticated');
         } catch (Exception $error) {
@@ -91,5 +91,14 @@ class UserController extends Controller
                 500
             );
         }
+    }
+    public function logout(Request $request)
+    {
+        $token = $request->user()->currentAccessToken()->delete();
+        return ResponseFormatter::success($token, 'Token Revoked');
+    }
+    public function fetch(Request $request)
+    {
+        return ResponseFormatter::success($request->user(), 'Data User Berhasil Diambil');
     }
 }
