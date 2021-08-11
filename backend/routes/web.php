@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::get('/category/add', [CategoryController::class, 'add']);
+Route::post('/category/store', [CategoryController::class, 'store']);
