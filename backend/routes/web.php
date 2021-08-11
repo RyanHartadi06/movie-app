@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
 Route::get('/category/add', [CategoryController::class, 'add']);
 Route::post('/category/store', [CategoryController::class, 'store']);
+Route::get('/category/destroy/{category:slug}', [CategoryController::class, 'destroy']);
+Route::get('/category/edit/{category:slug}', [CategoryController::class, 'edit']);
+Route::post('/category/update/{id}', [CategoryController::class, 'update']);
+//USER
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/destroy/{id}', [UserController::class, 'destroy']);

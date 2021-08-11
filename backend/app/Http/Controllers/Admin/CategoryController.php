@@ -27,6 +27,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $key =  Str::random(10);
@@ -41,6 +42,42 @@ class CategoryController extends Controller
 
         ];
         Category::create($data);
+        return redirect('category');
+    }
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect('category');
+    }
+    public function edit(Category $category)
+    {
+        return view('admin.category.edit', [
+            'category' => $category
+        ]);
+    }
+    public function update(Request $request,  $id)
+    {
+        $category = Category::findOrFail($id);
+        if ($request->image <> "") {
+            $key =  Str::random(10);
+            $file = Request()->image;
+            $filename = 'assets/category' . '/' . $key . '.' . $file->extension();
+            $file->move(public_path('assets/category'), $filename);
+
+
+            $category->name = $request->name;
+            $category->slug = Str::slug($request->name);
+            $category->image = $filename;
+            $category->save();
+        } else {
+            $category = Category::findOrFail($id);
+
+            $category->name = $request->name;
+            $category->slug = Str::slug($request->name);
+
+            $category->save();
+        }
+
         return redirect('category');
     }
 }

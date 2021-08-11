@@ -5,31 +5,30 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Category Movie') }}</div>
+                <div class="card-header">{{ __('User') }}</div>
 
                 <div class="card-body">
-                    <a href="/category/add" class="btn btn-primary btn-sm mb-2">+ Tambah Category</a>
-                    <table class="table table-striped">
+                  <table class="table table-striped">
                         <thead>
                           <tr>
                             <th scope="col">No</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Slug</th>
-                            <th scope="col">Photo</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone Number</th>
                             <th scope="col">Handle</th>
                           </tr>
                         </thead>
                         <tbody>
                             <?php $no = 1;?>
-                            @foreach ($category as $category)
+                            @foreach ($user as $user)
                             <tr>
                                 <th scope="row">{{ $no++ }}</th>
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->slug }}</td>
-                                <td><img src="{{ $category->image }}" alt="" width="50px"></td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone_number }}</td>
                                 <td>
-                                    <a href="/category/edit/{{$category->slug}}" class="btn btn-sm btn-success text-decoration-none">Sunting</a>
-                                    <a href="/category/destroy/{{$category->slug}}" class="btn btn-sm btn-danger text-decoration-none">Delete</a>
+                                    <a href="/user/edit/{{$user->id}}" class="btn btn-sm btn-success text-decoration-none">Sunting</a>
+                                    <a href="/user/destroy/{{$user->id}}" class="btn btn-sm btn-danger text-decoration-none">Delete</a>
                                 </td>
                               </tr> 
                             @endforeach

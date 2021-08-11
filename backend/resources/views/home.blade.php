@@ -40,7 +40,7 @@
                         </div>
                     @endif
 
-                   <a href="" class="text-decoration-none text-dark">User</a> 
+                   <a href="/user" class="text-decoration-none text-dark">User</a> 
                 </div>
             </div>
         </div>
